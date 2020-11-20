@@ -91,21 +91,6 @@ let transactions = [
   }
 ]
 
-/*
-const groupByCategory = (transactions, getter) => {
-  const map = new Map();
-  transactions.forEach((item) => {
-       const key = getter(item);
-       const collection = map.get(key);
-       if (!collection) {
-           map.set(key, [item]);
-       } else {
-           collection.push(item);
-       }
-  });
-  return map;
-}
-*/
 
 const fetchByCategory = () => {
   const groupByCategory = (array, getter) => {
@@ -131,18 +116,6 @@ final.push(transport, food, gymmembership, restaurant)
 return final
 }
 
-/*
-const printGrouped = () => {
-const grouped = groupByCategory(transactions, transaction => transaction.category);
-  
-console.log(grouped.get("transport")); 
-console.log(grouped.get("food"));
-console.log(grouped.get("gym membership")) 
-console.log(grouped.get("restaurant"))
-
-}
-*/
-
 
 
 const giveId = () => {
@@ -161,8 +134,6 @@ const listOnlyCategoryInOrder = () => {
 const listCategoryAmount = () => {
   let transactions2 = transactions.map(transaction => transaction.category)
   let transactions3 = transactions.map(transaction => transaction.amount)
-  //transactions2.sort()
-  //transactions3.sort()
   let transactions4 = []
   transactions4.push(transactions2)
   transactions4.push(transactions3)
@@ -233,7 +204,7 @@ app.post('/api/transactions', (request, response) => {
 
 
 // want to return a list of four objects, representing each category - food, transport,
-// gym membership and restaurant - with 
+// gym membership and restaurant - with total amount for each category - totalValue
 
 app.get('/api/insights/categories', (request, response) => {
   //let result = listOnlyCategoryInOrder()
