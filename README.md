@@ -1,6 +1,8 @@
 # Insights Service
 
-As part of out latest MVP build we need to present a user with some insights about their spending. We need to build a server that returns JSON formatted insights. A list of transactions for a user can be retrieved at `GET http://54.154.227.172:3000/transactions`. The server should fetch this list, then calculate the insights below, and return them in the body of the response with a 200 response code. 
+As part of out latest MVP build we need to present a user with some insights about their spending. We need to build a server that returns JSON formatted insights.
+ A list of transactions for a user can be retrieved at `GET http://54.154.227.172:3000/transactions`. 
+ The server should fetch this list, then calculate the insights below, and return them in the body of the response with a 200 response code. 
 
 The api returns an array of transactions:
 
