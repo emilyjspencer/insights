@@ -15,6 +15,7 @@ async function request(path) {
 }
 
 describe('Insights Service', () => {
+
   describe('/categories', () => {
     context('it is yet to be implemented', () => {
       it('should return a 501 error', async () => {
@@ -49,6 +50,7 @@ describe('Insights Service', () => {
           response.statusCode.should.equal(200);
           response.body[0].averageValue.should.equal(60);
         })
+      })
     })
 
     describe('/categories', () => {
@@ -70,6 +72,7 @@ describe('Insights Service', () => {
           response.statusCode.should.equal(200);
           response.body[0].averageValue.should.equal(17);
         })
+      })
     })
 
     describe('/categories', () => {
@@ -91,6 +94,7 @@ describe('Insights Service', () => {
           response.statusCode.should.equal(200);
           response.body[0].averageValue.should.equal(20);
         })
+      })
     })
 
     describe('/categories', () => {
@@ -112,10 +116,11 @@ describe('Insights Service', () => {
           response.statusCode.should.equal(200);
           response.body[0].averageValue.should.equal(19);
         })
+      })
     })
 
-
   });
+
 
 
   describe('/cashflow', () => {
@@ -132,5 +137,10 @@ describe('Insights Service', () => {
         response.statusCode.should.equal(200)
       })
     })
+
+
   });
 });
+    
+
+ 
