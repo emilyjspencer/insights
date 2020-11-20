@@ -91,6 +91,7 @@ let transactions = [
   }
 ]
 
+/*
 const groupByCategory = (transactions, getter) => {
   const map = new Map();
   transactions.forEach((item) => {
@@ -104,7 +105,33 @@ const groupByCategory = (transactions, getter) => {
   });
   return map;
 }
+*/
 
+const fetchByCategory = () => {
+  const groupByCategory = (array, getter) => {
+   const map = new Map();
+   array.forEach((item) => {
+        const key = getter(item);
+        const collection = map.get(key);
+        if (!collection) {
+            map.set(key, [item]);
+        } else {
+            collection.push(item);
+        }
+   });
+   return map;
+  }
+const grouped = groupByCategory(transactions, transaction => transaction.category);   
+let final = [];
+let transport = grouped.get("transport")
+let food = grouped.get("food");
+let gymmembership = grouped.get("gym membership")
+let restaurant = grouped.get("restaurant")
+final.push(transport, food, gymmembership, restaurant)
+return final
+}
+
+/*
 const printGrouped = () => {
 const grouped = groupByCategory(transactions, transaction => transaction.category);
   
@@ -114,6 +141,7 @@ console.log(grouped.get("gym membership"))
 console.log(grouped.get("restaurant"))
 
 }
+*/
 
 
 
@@ -209,7 +237,9 @@ app.post('/api/transactions', (request, response) => {
 
 app.get('/api/insights/categories', (request, response) => {
   //let result = listOnlyCategoryInOrder()
-  let result = groupByCategory()
+  fetchByCategory()
+
+  let result = fetchByCategory()
   response.json(result);
 })
 
