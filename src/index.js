@@ -82,7 +82,7 @@ let transactions = [
     "id": 10,
     "amount": 20,
     "merchant": "National Express",
-    "category": "travel",
+    "category": "transport",
     "paymentDate": "2019-04-15T10:24:48.960Z"
 
   }
@@ -100,6 +100,13 @@ app.get('/api/transactions/:id', (request, response) => {
   } else {  
     response.status(404).end()
   }
+})
+
+// this route will return a list of transactions grouped by category
+// the categories are: transport, food, gym membership, restaurant
+app.get('/api/insights/categories', (request, response) => {
+
+
 })
 
 
