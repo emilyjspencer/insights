@@ -1,4 +1,5 @@
 const express = require('express');
+const request = require('request');
 
 const insightsRouter = require('./routers/insights');
 
@@ -53,7 +54,7 @@ let transactions = [
     "id": 6,
     "amount": 10,
     "merchant": "TFL",
-    "cateogy": "transport",
+    "category": "transport",
     "paymentDate": "2019-03-11T09:24:48.960Z"
   },
   {
@@ -91,8 +92,9 @@ let transactions = [
 // routes
 // route to test that when I try to fetch a particular item, I can
 app.get('/api/transactions/:id', (request, response) => {
+  // access the id
   const id = Number(request.params.id);
-
+  // find the transaction by its id
   const transaction = transactions.find(transaction => transaction.id === id);
 
   if(transaction) {
@@ -101,6 +103,16 @@ app.get('/api/transactions/:id', (request, response) => {
     response.status(404).end()
   }
 })
+
+// all transactions
+app.get('/api/transactions/', (request, response) => {
+  
+  // map through them
+ let transactionsList = transactions.map(transaction => transaction );
+  response.json(transactionsList)
+        
+  
+});
 
 // this route will return a list of transactions grouped by category
 // the categories are: transport, food, gym membership, restaurant
