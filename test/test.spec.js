@@ -1,4 +1,5 @@
 const chai = require('chai');
+// requiring chai
 const rp = require('request-promise');
 
 chai.should();
@@ -21,7 +22,102 @@ describe('Insights Service', () => {
         response.statusCode.should.equal(501);
       });
     });
+
+    describe('/categories', () => {
+      it('should return a 200 status code', async () => {
+        const response = await request('/categories');
+        response.statusCode.should.equal(200);
+      });
+    })
+
+    describe('/categories', () => {
+      context('food', () => {
+        it('should return a total value of 180', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].totalValue.should.equal(180);
+        })
+
+        it('should return a total number of 3', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].totalNumber.should.equal(3);
+        })
+
+        it('should return an average value of 60', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].averageValue.should.equal(60);
+        })
+    })
+
+    describe('/categories', () => {
+      context('transport', () => {
+        it('should return a total value of 50', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].averageValue.should.equal(50);
+        })
+
+        it('should return a total number of 3', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].totalNumber.should.equal(3);
+        })
+
+        it('should return an average value of 17', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].averageValue.should.equal(17);
+        })
+    })
+
+    describe('/categories', () => {
+      context('gym membership', () => {
+        it('should return a total value of 40', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].totalValue.should.equal(40);
+        })
+
+        it('should return a total number of 2', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].totalNumber.should.equal(2);
+        })
+
+        it('should return an average value of 20', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].averageValue.should.equal(20);
+        })
+    })
+
+    describe('/categories', () => {
+      context('restaurant', () => {
+        it('should return a total value of 37', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].averageValue.should.equal(37);
+        })
+
+        it('should return a total number of 2', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].totalNumber.should.equal(2);
+        })
+
+        it('should return an average value of 19', async () => {
+          const response = await request('/categories');
+          response.statusCode.should.equal(200);
+          response.body[0].averageValue.should.equal(19);
+        })
+    })
+
+
   });
+
+
   describe('/cashflow', () => {
     context('it is yet to be implemented', () => {
       it('should return a 501 error', async () => {
@@ -29,5 +125,12 @@ describe('Insights Service', () => {
         response.statusCode.should.equal(501);
       });
     });
+
+    describe('/cashflow', () => {
+      it('should return a status code of 200', async () => {
+        const response = await request('/cashflow');
+        response.statusCode.should.equal(200)
+      })
+    })
   });
 });
