@@ -89,6 +89,12 @@ let transactions = [
   }
 ]
 
+const giveId = () => {
+
+  const highestId = transactions.length > 0 ? Math.max(...transactions.map(transaction => transaction.id)) : 0
+  return highestId + 1;
+}
+
 // routes
 // route to test that when I try to fetch a particular item, I can
 app.get('/api/transactions/:id', (request, response) => {
@@ -110,12 +116,40 @@ app.get('/api/transactions/', (request, response) => {
   // map through them
  let transactionsList = transactions.map(transaction => transaction );
   response.json(transactionsList)
-        
-  
 });
 
 // this route will return a list of transactions grouped by category
 // the categories are: transport, food, gym membership, restaurant
+
+app.delete('/api/transactions/', (request, response) => {
+  const id = Number(request.params.id);
+  transactions = transactions.filter(transaction => transaction.id !== id)
+  response.json(transactions)
+})
+
+app.post('/api/transactions', (request, response) => {
+  const body = request.body
+  if (!body.amount || !body.merchant || !body.category || !body.paymentDate) {
+    return response.status(400).json({ 
+      error: 'Information missing' 
+    })
+  }
+ 
+  
+  const transaction = {
+    merchant: body.merchant,
+    amount: body.amount,
+    category: body.category,
+    paymentDate: body.paymentDate,
+    important: body.important || false,
+    id: giveId(),
+  }
+
+  transactions = transactions.concat(transaction)
+
+  response.json(transaction)
+})
+
 app.get('/api/insights/categories', (request, response) => {
 
 
