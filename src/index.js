@@ -89,7 +89,18 @@ let transactions = [
 ]
 
 // routes
+// route to test that when I try to fetch a particular item, I can
+app.get('/api/transactions/:id', (request, response) => {
+  const id = Number(request.params.id);
 
+  const transaction = transactions.find(transaction => transaction.id === id);
+
+  if(transaction) {
+    response.json(transaction)
+  } else {  
+    response.status(404).end()
+  }
+})
 
 
 module.exports = app;
