@@ -123,11 +123,13 @@ app.get('/api/transactions/', (request, response) => {
 // this route will return a list of transactions grouped by category
 // the categories are: transport, food, gym membership, restaurant
 
-app.delete('/api/transactions/', (request, response) => {
+app.delete('/api/transactions/:is', (request, response) => {
   const id = Number(request.params.id);
   transactions = transactions.filter(transaction => transaction.id !== id)
-  response.json(transactions)
+  response.status(204).end()
 })
+
+
 
 app.post('/api/transactions', (request, response) => {
   // the body can be accessed using the Express json-parser
@@ -153,13 +155,21 @@ app.post('/api/transactions', (request, response) => {
   response.json(transaction)
 })
 
-app.put('/api/transactions/:id', (request, response) => {
-  const id = request.params.id;
-  const transaction 
-})
+//app.put('/api/transactions/:id', (request, response) => {
+  //const id = request.params.id;
+  //const transaction 
+//})
 
 app.get('/api/insights/categories', (request, response) => {
 
+
+  app.get('/categories', async (req, res, next) => {
+    try {
+      res.status(200).json({ message: 'Request successful' });
+    } catch (err) {
+      return next(err);
+    }
+  });
 
 })
 
