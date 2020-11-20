@@ -14,6 +14,8 @@ app.use((error, _, res, next) => {
   next();
 });
 
+app.use(express.json())
+
 let transactions = [
   {
     "id": 1,
@@ -128,6 +130,7 @@ app.delete('/api/transactions/', (request, response) => {
 })
 
 app.post('/api/transactions', (request, response) => {
+  // the body can be accessed using the Express json-parser
   const body = request.body
   if (!body.amount || !body.merchant || !body.category || !body.paymentDate) {
     return response.status(400).json({ 
@@ -148,6 +151,11 @@ app.post('/api/transactions', (request, response) => {
   transactions = transactions.concat(transaction)
 
   response.json(transaction)
+})
+
+app.put('/api/transactions/:id', (request, response) => {
+  const id = request.params.id;
+  const transaction 
 })
 
 app.get('/api/insights/categories', (request, response) => {
