@@ -91,6 +91,32 @@ let transactions = [
   }
 ]
 
+const groupByCategory = (transactions, getter) => {
+  const map = new Map();
+  transactions.forEach((item) => {
+       const key = getter(item);
+       const collection = map.get(key);
+       if (!collection) {
+           map.set(key, [item]);
+       } else {
+           collection.push(item);
+       }
+  });
+  return map;
+}
+
+const printGrouped = () => {
+const grouped = groupByCategory(transactions, transaction => transaction.category);
+  
+console.log(grouped.get("transport")); 
+console.log(grouped.get("food"));
+console.log(grouped.get("gym membership")) 
+console.log(grouped.get("restaurant"))
+
+}
+
+
+
 const giveId = () => {
 
   const highestId = transactions.length > 0 ? Math.max(...transactions.map(transaction => transaction.id)) : 0
@@ -103,6 +129,21 @@ const listOnlyCategoryInOrder = () => {
   transactions2.sort()
   return transactions2
 }
+
+const listCategoryAmount = () => {
+  let transactions2 = transactions.map(transaction => transaction.category)
+  let transactions3 = transactions.map(transaction => transaction.amount)
+  //transactions2.sort()
+  //transactions3.sort()
+  let transactions4 = []
+  transactions4.push(transactions2)
+  transactions4.push(transactions3)
+  return transactions4
+}
+
+
+
+
 
 // routes
 // route to test that when I try to fetch a particular item, I can
@@ -162,16 +203,13 @@ app.post('/api/transactions', (request, response) => {
   response.json(transaction)
 })
 
-//app.put('/api/transactions/:id', (request, response) => {
-  //const id = request.params.id;
-  //const transaction 
-//})
 
 // want to return a list of four objects, representing each category - food, transport,
 // gym membership and restaurant - with 
 
-app.get('/api/categories', (request, response) => {
-  let result = listOnlyCategoryInOrder()
+app.get('/api/insights/categories', (request, response) => {
+  //let result = listOnlyCategoryInOrder()
+  let result = groupByCategory()
   response.json(result);
 })
 
