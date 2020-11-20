@@ -170,7 +170,7 @@ app.get('/api/transactions/', (request, response) => {
 // this route will return a list of transactions grouped by category
 // the categories are: transport, food, gym membership, restaurant
 
-app.delete('/api/transactions/:is', (request, response) => {
+app.delete('/api/transactions/:id', (request, response) => {
   const id = Number(request.params.id);
   transactions = transactions.filter(transaction => transaction.id !== id)
   response.status(204).end()
