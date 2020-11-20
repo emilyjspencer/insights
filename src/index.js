@@ -140,7 +140,53 @@ const listCategoryAmount = () => {
   return transactions4
 }
 
+const manipulateDataTransport = () => {
+  let result = transactions.slice(0, 3)
+  let totalValue = 0;
+  for (let i = 0; i < result.length; i++) {
+  totalValue += result[i].amount;
+}
+  return totalValue;
+}
 
+const manipulateDataFood = () => {
+  let result = transactions.slice(3, 6)
+  let totalValue = 0;
+  for(let i = 0; i < result.length; i++) {
+    totalValue += result[i].amount;
+  }
+  return totalValue;
+}
+
+const manipulateDataGym = () => {
+  let result = transactions.slice(6, 8)
+  let totalValue = 0;
+  for(let i = 0; i < result.length; i++) {
+    totalValue += result[i].amount;
+  }
+  return totalValue;
+
+}
+
+const manipulateDataRestaurant = () => {
+  let result = transactions.slice(8, 10)
+  let totalValue = 0;
+  for(let i = 0; i < result.length; i++) {
+    totalValue += result[i].amount;
+  }
+  return totalValue;
+
+}
+
+
+const manipulate = () => {
+  manipulateDataTransport()
+  manipulateDataFood()
+  manipulateDataGym()
+  manipulateDataRestaurant()
+}
+
+console.log(manipulate())
 
 
 
@@ -216,8 +262,6 @@ app.get('/api/insights/categories', (request, response) => {
 
 app.get('/api/insights/categories', (request, response) => {
 
-
-
   app.get('/categories', async (req, res, next) => {
     try {
       res.status(200).json({ message: 'Request successful' });
@@ -225,6 +269,14 @@ app.get('/api/insights/categories', (request, response) => {
       return next(err);
     }
   });
+
+})
+
+ 
+app.get('/api/manipulation', (request, response) => {
+  manipulate()
+  let result = manipulate();
+  response.json(result.flat());
 
 })
 
