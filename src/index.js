@@ -211,7 +211,7 @@ app.get('/api/insights/categories', (request, response) => {
   fetchByCategory()
 
   let result = fetchByCategory()
-  response.json(result);
+  response.json(result.flat());
 })
 
 app.get('/api/insights/categories', (request, response) => {
