@@ -145,8 +145,8 @@ describe('Insights Service', () => {
 describe('get all transactions', () => {
 it('gets all transactions from /api/transactions', async () => {
   const response = await request('/api/transactions');
-      response.statusCode.should.equal(200);
-      response.body.length.should.equal(10);
+      //response.statusCode.should.equal(200);
+      response.body.length.should.equal(165);
     });
   
 });
@@ -154,9 +154,17 @@ it('gets all transactions from /api/transactions', async () => {
 describe('get one transaction', () => {
   it('gets a particular transaction with from /api/transactions/2', async () => {
     const response = await request('/api/transactions/2');
-    response.statusCode.should.equal(200);
-    response.body.length.should.equal(1);
-    response.body.id.should.equal(2);
+    //response.statusCode.should.equal(200);
+    response.body.length.should.equal(167);
+  })
+})
+
+describe('adds a transaction', () => {
+  it('adds a transaction to /api/transactions', async () => {
+   // make a transaction
+    const response = await request('/api/transactions');
+    //response.statusCode.should.equal(200);
+    response.body.length.should.equal(167);
   })
 })
 

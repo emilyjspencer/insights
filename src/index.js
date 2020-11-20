@@ -70,7 +70,7 @@ let transactions = [
     "id": 8,
     "amount": 20,
     "merchant": "The Gym",
-    "category": "Gym membership",
+    "category": "gym membership",
     "paymentDate": "2019-03-31T18:24:48.960Z"
   },
   {
@@ -95,6 +95,13 @@ const giveId = () => {
 
   const highestId = transactions.length > 0 ? Math.max(...transactions.map(transaction => transaction.id)) : 0
   return highestId + 1;
+}
+
+
+const listOnlyCategoryInOrder = () => {
+  let transactions2 = transactions.map(transaction => transaction.category)
+  transactions2.sort()
+  return transactions2
 }
 
 // routes
@@ -160,7 +167,16 @@ app.post('/api/transactions', (request, response) => {
   //const transaction 
 //})
 
+// want to return a list of four objects, representing each category - food, transport,
+// gym membership and restaurant - with 
+
+app.get('/api/categories', (request, response) => {
+  let result = listOnlyCategoryInOrder()
+  response.json(result);
+})
+
 app.get('/api/insights/categories', (request, response) => {
+
 
 
   app.get('/categories', async (req, res, next) => {
